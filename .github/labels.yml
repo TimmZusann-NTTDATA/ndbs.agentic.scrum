@@ -1,0 +1,57 @@
+# GitHub Labels Configuration
+# This file defines all labels used in the repository for issue tracking and management
+
+# Status Labels
+- name: refinement
+  color: "FFA500"
+  description: "Issue is in refinement phase with Product Owner and Copilot"
+
+- name: ready-for-dev
+  color: "00AA00"
+  description: "Issue is refined and ready for agent development"
+
+- name: in-progress
+  color: "0000FF"
+  description: "Agent is currently working on this issue"
+
+- name: review
+  color: "800080"
+  description: "Issue/PR is under code review"
+
+- name: done
+  color: "000000"
+  description: "Issue is completed and merged"
+
+# Issue Type Labels
+- name: user-story
+  color: "1E90FF"
+  description: "A user-facing requirement from the Product Owner"
+
+- name: sub-task
+  color: "87CEEB"
+  description: "A technical task within a user story, worked on in the same feature branch"
+
+- name: bug
+  color: "FF0000"
+  description: "A defect or unexpected behavior"
+
+- name: feature
+  color: "228B22"
+  description: "A new feature or enhancement"
+
+- name: tech-debt
+  color: "DAA520"
+  description: "Technical debt, refactoring, or infrastructure work"
+
+# Size Labels (Story Points)
+- name: small
+  color: "C2E0C6"
+  description: "Small task, ~1-3 days for an agent"
+
+- name: medium
+  color: "FFC0CB"
+  description: "Medium task, ~3-5 days for an agent"
+
+- name: large
+  color: "FFB6C1"
+  description: "Large task, ~1-2 weeks for an agent"
