@@ -74,24 +74,26 @@ Epic (Mensch erstellt)
 
 ### Labels
 
-| Label              | Bedeutung                              |
-|--------------------|----------------------------------------|
-| `epic`             | Übergeordnetes Ziel                    |
-| `story`            | User-sichtbares Feature                |
-| `bug`              | Defekt / unerwartetes Verhalten        |
-| `task`             | Technische Aufgabe (von Copilot)       |
-| `status: ready`    | Bereit zur Bearbeitung                 |
-| `status: in-progress` | Wird gerade bearbeitet            |
-| `status: done`     | Abgeschlossen                          |
-| `status: blocked`  | Blockiert (Grund im Issue)             |
+| Label                  | Bedeutung                                                   |
+|------------------------|-------------------------------------------------------------|
+| `epic`                 | Übergeordnetes Ziel                                         |
+| `story`                | User-sichtbares Feature                                     |
+| `bug`                  | Defekt / unerwartetes Verhalten                             |
+| `task`                 | Technische Aufgabe (von Copilot generiert)                  |
+| `status: backlog`      | Neu erstellt, noch nicht verfeinert (Default)               |
+| `status: refinement`   | Bereit für Task-Generierung durch Copilot                   |
+| `status: ready`        | Vollständig ausgearbeitet, bereit für Dev/Agent             |
+| `status: in-progress`  | Wird gerade bearbeitet                                      |
+| `status: done`         | Abgeschlossen                                               |
+| `status: blocked`      | Blockiert (Grund im Issue)                                  |
 
 ### Prozess
 
-1. **Mensch erstellt** Epic / Story / Bug (mit Issue Template)
-2. **Mensch tagged** das Issue mit `status: ready`
-3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung
-4. **Copilot arbeitet** Tasks eigenständig ab (Branch → Code → Tests → PR)
-5. **Mensch reviewed** den PR und merged
+1. **Mensch erstellt** Epic / Story / Bug → erhält automatisch `status: backlog`
+2. **Mensch setzt** Label auf `status: refinement` wenn das Issue inhaltlich klar genug für Task-Generierung ist
+3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung → setzt Parent-Issue auf `status: ready`
+4. **Dev / Agent** arbeitet Tasks ab (Branch → Code → Tests → PR) → `status: in-progress`
+5. **Mensch reviewed** den PR und merged → `status: done`
 
 ### Task-Qualitätskriterien
 

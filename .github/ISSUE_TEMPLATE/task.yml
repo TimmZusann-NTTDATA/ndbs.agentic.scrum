@@ -1,7 +1,7 @@
 name: "⚙️ Task (Copilot)"
 description: "Technischer Task – wird von Copilot generiert und abgearbeitet"
 title: "[Task] "
-labels: ["task", "status: ready"]
+labels: ["task", "status: backlog"]
 body:
   - type: markdown
     attributes:

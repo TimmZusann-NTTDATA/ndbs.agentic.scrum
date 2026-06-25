@@ -1,7 +1,7 @@
 name: "📖 Story"
 description: "User-sichtbares Feature / Anforderung"
 title: "[Story] "
-labels: ["story", "status: ready"]
+labels: ["story", "status: backlog"]
 body:
   - type: markdown
     attributes:
