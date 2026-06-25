@@ -1,0 +1,79 @@
+name: "⚙️ Task (Copilot)"
+description: "Technischer Task – wird von Copilot generiert und abgearbeitet"
+title: "[Task] "
+labels: ["task", "status: ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > ⚠️ **Dieses Template wird von Copilot ausgefüllt**, nicht vom Menschen.
+        > Tasks sind die technischen Unteraufgaben einer Story oder eines Bugs.
+
+  - type: input
+    id: parent
+    attributes:
+      label: "👆 Parent Issue"
+      description: "Story oder Bug, zu dem dieser Task gehört"
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: "🎯 Aufgabe"
+      description: "Was ist konkret zu tun?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_approach
+    attributes:
+      label: "🔧 Technischer Ansatz"
+      description: "Wie wird die Aufgabe umgesetzt? Pattern, Architektur-Entscheidungen"
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "📁 Betroffene Dateien / Module"
+      description: "Welche Dateien werden erstellt oder geändert?"
+      placeholder: |
+        **Neu erstellen:**
+        - `src/Backend.Application/Features/X/XHandler.cs`
+
+        **Ändern:**
+        - `src/Backend.API/Controllers/XController.cs`
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_cases
+    attributes:
+      label: "🧪 Testfälle"
+      description: "Welche Tests müssen geschrieben werden?"
+      placeholder: |
+        - [ ] Test: Erfolgsfall – ...
+        - [ ] Test: Fehlerfall – ...
+        - [ ] Test: Randfall – ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: "🔗 Abhängigkeiten"
+      description: "Welche anderen Tasks müssen zuerst abgeschlossen sein?"
+      placeholder: "Blockiert von: #X, #Y"
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: "✅ Definition of Done"
+      value: |
+        - [ ] Code implementiert und kompilierbar
+        - [ ] Unit Tests geschrieben und grün
+        - [ ] Keine neuen Linting-Fehler
+        - [ ] PR erstellt
+        - [ ] Akzeptanzkriterien der Parent-Story erfüllt

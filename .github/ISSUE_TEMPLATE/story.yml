@@ -1,0 +1,62 @@
+name: "📖 Story"
+description: "User-sichtbares Feature / Anforderung"
+title: "[Story] "
+labels: ["story", "status: ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Story erstellen
+        Beschreibe das Feature aus Nutzersicht. Copilot generiert daraus die technischen Tasks.
+
+  - type: input
+    id: epic
+    attributes:
+      label: "🏔️ Zugehöriges Epic"
+      description: "Issue-Nummer des übergeordneten Epics"
+      placeholder: "#123"
+
+  - type: textarea
+    id: user_story
+    attributes:
+      label: "👤 User Story"
+      description: "Klassisches Format: Als [Rolle] möchte ich [Funktion], damit [Nutzen]"
+      placeholder: "Als Nutzer möchte ich ..., damit ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "✅ Akzeptanzkriterien"
+      description: "Wann ist diese Story erledigt? (Checkboxen)"
+      placeholder: |
+        - [ ] Kriterium 1
+        - [ ] Kriterium 2
+        - [ ] Kriterium 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: "🔧 Technische Hinweise (optional)"
+      description: "Bekannte Einschränkungen, bevorzugte Ansätze, betroffene Services"
+      placeholder: "z.B. muss mit Service X kompatibel sein..."
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: "🚫 Out of Scope"
+      description: "Was gehört explizit NICHT zu dieser Story?"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "🔥 Priorität"
+      options:
+        - "Hoch"
+        - "Mittel"
+        - "Niedrig"
+    validations:
+      required: true
