@@ -53,3 +53,17 @@ body:
         - "Niedrig"
     validations:
       required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Weitere Hintergrundinformationen, Abhängigkeiten oder Entscheidungen die für die Umsetzung relevant sein könnten"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Mockups, Wireframes, Diagramme oder sonstige Dokumente zur Story.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.

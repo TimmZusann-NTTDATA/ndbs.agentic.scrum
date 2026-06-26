@@ -64,3 +64,17 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Vorhandene Erkenntnisse, verwandte Technologien oder frühere Recherchen die als Ausgangspunkt dienen können"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Referenzdokumente, Artikel, Diagramme oder sonstige Materialien zum Spike.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.
+

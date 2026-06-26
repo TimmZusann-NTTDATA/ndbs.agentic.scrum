@@ -71,3 +71,17 @@ body:
       placeholder: |
         - [ ] Fehler tritt nicht mehr auf
         - [ ] Regressionstest vorhanden
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Weitere Hinweise, Logs, Fehlermeldungen oder Beobachtungen die bei der Analyse helfen könnten"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Screenshots, Screencasts, Logdateien oder sonstige Belege zum Bug.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.
