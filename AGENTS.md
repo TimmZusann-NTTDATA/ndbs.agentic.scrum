@@ -74,28 +74,29 @@ Epic (Mensch erstellt)
 
 ### Labels
 
-| Label                  | Bedeutung                                                   |
-|------------------------|-------------------------------------------------------------|
-| `epic`                 | Übergeordnetes Ziel                                         |
-| `story`                | User-sichtbares Feature                                     |
-| `bug`                  | Defekt / unerwartetes Verhalten                             |
-| `task`                 | Technische Aufgabe (von Copilot generiert)                  |
-| `status: backlog`      | Neu erstellt, noch nicht verfeinert (Default)               |
-| `status: refinement`   | Bereit für Task-Generierung durch Copilot                   |
-| `status: ready`        | Vollständig ausgearbeitet, bereit für Dev/Agent             |
-| `status: in-progress`  | Wird gerade bearbeitet                                      |
-| `status: done`         | Abgeschlossen                                               |
-| `status: blocked`      | Blockiert (Grund im Issue)                                  |
+| Label           | Bedeutung                                                   |
+|-----------------|-------------------------------------------------------------|
+| `Epic`          | Übergeordnetes Ziel                                         |
+| `Story`         | User-sichtbares Feature                                     |
+| `Bug`           | Defekt / unerwartetes Verhalten                             |
+| `Task`          | Technische Aufgabe (von Copilot generiert)                  |
+| `Spike`         | Analyse- / Rechercheaufgabe                                 |
+| `New`           | Neu erstellt, noch nicht verfeinert (Default)               |
+| `ForRefinement` | Bereit für Task-Generierung durch Copilot                   |
+| `Ready`         | Vollständig ausgearbeitet, bereit für Dev/Agent             |
+| `InProgress`    | Wird gerade bearbeitet                                      |
+| `ForReview`     | Wartet auf Review, Test oder Abnahme                        |
+| `Done`          | Abgeschlossen und akzeptiert                                |
 
 ### Prozess
 
-1. **Mensch erstellt** Epic / Story / Bug → erhält automatisch `status: backlog`
-2. **Mensch setzt** Label auf `status: refinement` wenn das Issue inhaltlich klar genug für Task-Generierung ist
-3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung → setzt Parent-Issue auf `status: ready`
+1. **Mensch erstellt** Epic / Story / Bug → erhält automatisch `New`
+2. **Mensch setzt** Label auf `ForRefinement` wenn das Issue inhaltlich klar genug für Task-Generierung ist
+3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung → setzt Parent-Issue auf `Ready`
 4. **Mensch weist** die Story / den Bug **dem Agent zu** → Agent erstellt einen einzigen Feature-Branch für die gesamte Story
-5. **Agent arbeitet alle Tasks sequenziell** auf demselben Branch ab → setzt Tasks auf `status: done` wenn erledigt → setzt Story auf `status: in-progress`
-6. **Agent öffnet einen PR** wenn alle Tasks der Story abgeschlossen sind → setzt Story auf `status: done`
-7. **Mensch reviewed** den PR und merged
+5. **Agent arbeitet alle Tasks sequenziell** auf demselben Branch ab → setzt Tasks auf `Done` wenn erledigt → setzt Story auf `InProgress`
+6. **Agent öffnet einen PR** wenn alle Tasks der Story abgeschlossen sind → setzt Story auf `ForReview`
+7. **Mensch reviewed** den PR und merged → setzt Story auf `Done`
 
 ### Branch-Strategie
 
@@ -128,10 +129,10 @@ Ein Task ist ausreichend spezifiziert, wenn Copilot:
 - [ ] Task-Issue auf `status: done` gesetzt
 
 ### Story-Ebene (nach allen Tasks)
-- [ ] Alle Tasks der Story auf `status: done`
+- [ ] Alle Tasks der Story auf `Done`
 - [ ] Feature-Dokumentation erstellt / aktualisiert (`docs/features/<feature>.md`)
 - [ ] ADR angelegt falls eine Architekturentscheidung getroffen wurde (`docs/adr/`)
 - [ ] `architecture.md` aktualisiert falls sich Struktur oder Kontext geändert hat
 - [ ] Ein PR gegen `main` geöffnet (Titel: `feat: [#<story-nr>] <Story-Titel>`)
 - [ ] Akzeptanzkriterien der Story im PR dokumentiert
-- [ ] Story-Issue auf `status: done` gesetzt
+- [ ] Story-Issue auf `ForReview` gesetzt (→ nach Merge auf `Done`)

@@ -1,7 +1,7 @@
 name: "🐛 Bug"
 description: "Defekt / unerwartetes Verhalten melden"
 title: "[Bug] "
-labels: ["bug", "status: backlog"]
+labels: ["Bug", "New"]
 body:
   - type: markdown
     attributes:
