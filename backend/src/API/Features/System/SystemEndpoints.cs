@@ -1,4 +1,4 @@
-namespace Backend.API.Features.System;
+namespace ndbs.shopping.API.Features.System;
 
 public static class SystemEndpoints
 {

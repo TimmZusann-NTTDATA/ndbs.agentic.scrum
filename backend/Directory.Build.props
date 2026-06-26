@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>ndbs.shopping.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>ndbs.shopping.$(MSBuildProjectName)</RootNamespace>
+  </PropertyGroup>
+</Project>
