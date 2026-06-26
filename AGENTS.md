@@ -22,15 +22,16 @@ vollständig ausgearbeitete Tasks (Sub-Issues) generiert und abarbeitet.
 - **Tests:** xUnit, FluentAssertions, NSubstitute
 - **Projektstruktur:**
   ```
-  src/
-    Backend.Domain/
-    Backend.Application/
-    Backend.Infrastructure/
-    Backend.API/
-  tests/
-    Backend.Domain.Tests/
-    Backend.Application.Tests/
-    Backend.API.Tests/
+  backend/
+    src/
+      Backend.Domain/
+      Backend.Application/
+      Backend.Infrastructure/
+      Backend.API/
+    tests/
+      Backend.Domain.Tests/
+      Backend.Application.Tests/
+      Backend.API.Tests/
   ```
 
 ### Frontend
@@ -255,23 +256,23 @@ gh issue edit <story-nr> --remove-label "InProgress" --add-label "ForReview"
 
 ```bash
 # Bauen
-dotnet build src/
+dotnet build backend/src/
 
 # Alle Tests ausführen
-dotnet test tests/
+dotnet test backend/tests/
 
 # Einzelnes Testprojekt
-dotnet test tests/Backend.Application.Tests/
+dotnet test backend/tests/Backend.Application.Tests/
 
 # EF Core Migration anlegen
 dotnet ef migrations add <MigrationName> \
-  --project src/Backend.Infrastructure \
-  --startup-project src/Backend.API
+  --project backend/src/Backend.Infrastructure \
+  --startup-project backend/src/Backend.API
 
 # Datenbank aktualisieren
 dotnet ef database update \
-  --project src/Backend.Infrastructure \
-  --startup-project src/Backend.API
+  --project backend/src/Backend.Infrastructure \
+  --startup-project backend/src/Backend.API
 ```
 
 ### Frontend
@@ -297,7 +298,7 @@ pnpm build
 
 ```bash
 # Backend
-dotnet build src/ && dotnet test tests/
+dotnet build backend/src/ && dotnet test backend/tests/
 
 # Frontend
 cd frontend && pnpm build && pnpm test --run
@@ -309,7 +310,7 @@ Beide müssen fehlerfrei durchlaufen bevor ein PR geöffnet wird.
 
 ## Umgebung & Konfiguration
 
-### Backend (`src/Backend.API/appsettings.Development.json`)
+### Backend (`backend/src/Backend.API/appsettings.Development.json`)
 
 ```json
 {

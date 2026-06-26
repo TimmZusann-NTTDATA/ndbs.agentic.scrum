@@ -126,12 +126,13 @@ Nach dem Merge: Story-Label auf `Done` setzen.
 
 ```
 .
-├── src/                        # Backend (.NET 10, Clean Architecture)
-│   ├── Backend.Domain/
-│   ├── Backend.Application/
-│   ├── Backend.Infrastructure/
-│   └── Backend.API/
-├── tests/                      # Backend-Tests (xUnit)
+├── backend/                    # Backend (.NET 10, Clean Architecture)
+│   ├── src/
+│   │   ├── Backend.Domain/
+│   │   ├── Backend.Application/
+│   │   ├── Backend.Infrastructure/
+│   │   └── Backend.API/
+│   └── tests/                  # Backend-Tests (xUnit)
 ├── frontend/                   # Frontend (React + TypeScript)
 │   └── src/
 │       └── features/           # Feature Slices

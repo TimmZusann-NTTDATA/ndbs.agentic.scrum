@@ -48,7 +48,14 @@ frontend/
     lib/               # Hilfsfunktionen, Konfiguration
     types/             # Globale TypeScript-Typen
   tests/
-```
+
+> **Repo-Root-Struktur:**
+> ```
+> /
+> ├── backend/    # .NET Solution
+> ├── frontend/   # React App
+> └── docs/       # Dokumentation
+> ```
 
 - Imports zwischen Features **nur über `index.ts`** (barrel exports), nie direkte Pfade.
 - Zirkuläre Feature-Abhängigkeiten sind verboten.
