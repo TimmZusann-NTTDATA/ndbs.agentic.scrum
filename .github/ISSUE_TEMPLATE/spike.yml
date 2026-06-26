@@ -1,0 +1,80 @@
+name: "🔍 Spike"
+description: "Analyse- oder Rechercheaufgabe zur Entscheidungsfindung"
+title: "[Spike] "
+labels: ["Spike", "New"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Spike erstellen
+        Ein Spike dient der gezielten Analyse oder Recherche, um eine Entscheidung treffen
+        oder eine Unbekannte auflösen zu können. Das Ergebnis ist kein Feature-Code,
+        sondern **Wissen** – festgehalten als Dokumentation oder ADR.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: "❓ Zu beantwortende Frage"
+      description: "Welche konkrete Frage soll dieser Spike beantworten?"
+      placeholder: "Ist Technologie X für unseren Use Case geeignet? Wie verhält sich Y unter Last?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: "📋 Hintergrund / Motivation"
+      description: "Warum ist diese Frage wichtig? Was ist der Auslöser?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: "🔭 Scope der Analyse"
+      description: "Was soll untersucht werden? Was explizit nicht?"
+      placeholder: |
+        **Untersuchen:**
+        - ...
+
+        **Nicht untersuchen:**
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_outcome
+    attributes:
+      label: "🎯 Erwartetes Ergebnis"
+      description: "In welcher Form soll das Ergebnis vorliegen?"
+      placeholder: |
+        - [ ] Dokumentation in `docs/`
+        - [ ] Architecture Decision Record (ADR)
+        - [ ] Proof of Concept (Code, nicht produktionsreif)
+        - [ ] Entscheidungsvorlage für das Team
+    validations:
+      required: true
+
+  - type: input
+    id: timebox
+    attributes:
+      label: "⏱️ Timebox"
+      description: "Maximaler Zeitaufwand – ein Spike hat immer eine feste Obergrenze"
+      placeholder: "z.B. 2 Stunden, halber Tag"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Vorhandene Erkenntnisse, verwandte Technologien oder frühere Recherchen die als Ausgangspunkt dienen können"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Referenzdokumente, Artikel, Diagramme oder sonstige Materialien zum Spike.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.
+

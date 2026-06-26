@@ -1,0 +1,67 @@
+name: "🏔️ Epic"
+description: "Übergeordnetes Ziel / größeres Feature-Bündel"
+title: "[Epic] "
+labels: ["Epic"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Epic erstellen
+        Beschreibe das übergeordnete Ziel. Halte es schlank – Details kommen in Stories.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: "🎯 Ziel"
+      description: "Was soll mit diesem Epic erreicht werden? (1-3 Sätze)"
+      placeholder: "Als Nutzer möchte ich ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: "💡 Business Value"
+      description: "Warum ist das wichtig? Was ist der Mehrwert?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: "📦 Grober Scope"
+      description: "Welche Bereiche/Funktionen sind betroffen?"
+      placeholder: |
+        - Backend: ...
+        - Frontend: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: "🚫 Out of Scope"
+      description: "Was gehört explizit NICHT dazu?"
+
+  - type: textarea
+    id: stories
+    attributes:
+      label: "📋 Enthaltene Stories (grob)"
+      description: "Erste Ideen für Stories innerhalb dieses Epics (werden später als separate Issues erstellt)"
+      placeholder: |
+        - Story: ...
+        - Story: ...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Weitere Hintergrundinformationen, Zusammenhänge oder Entscheidungen die relevant sein könnten"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Dokumente, Screenshots, Mockups oder Diagramme die das Epic veranschaulichen.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.

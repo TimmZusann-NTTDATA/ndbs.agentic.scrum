@@ -1,0 +1,66 @@
+name: "⚙️ Task (Copilot)"
+description: "Technischer Task – wird von Copilot generiert und abgearbeitet"
+title: "[Task] "
+labels: ["Task", "New"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > ⚠️ **Dieses Template wird von Copilot ausgefüllt**, nicht vom Menschen.
+        > Tasks sind die technischen Unteraufgaben einer Story oder eines Bugs.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: "🎯 Aufgabe"
+      description: "Was ist konkret zu tun?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_approach
+    attributes:
+      label: "🔧 Technischer Ansatz"
+      description: "Wie wird die Aufgabe umgesetzt? Pattern, Architektur-Entscheidungen"
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "📁 Betroffene Dateien / Module"
+      description: "Welche Dateien werden erstellt oder geändert?"
+      placeholder: |
+        **Neu erstellen:**
+        - `src/Backend.Application/Features/X/XHandler.cs`
+
+        **Ändern:**
+        - `src/Backend.API/Controllers/XController.cs`
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_cases
+    attributes:
+      label: "🧪 Testfälle"
+      description: "Welche Tests müssen geschrieben werden?"
+      placeholder: |
+        - [ ] Test: Erfolgsfall – ...
+        - [ ] Test: Fehlerfall – ...
+        - [ ] Test: Randfall – ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: "✅ Definition of Done"
+      value: |
+        - [ ] Code implementiert und kompilierbar
+        - [ ] Unit Tests geschrieben und grün
+        - [ ] Keine neuen Linting-Fehler
+        - [ ] Commit auf Story-Branch mit Referenz auf diesen Task
+        - [ ] Akzeptanzkriterien der Parent-Story erfüllt
+        - [ ] Feature-Dokumentation in `docs/features/<feature>.md` erstellt / aktualisiert
+        - [ ] ADR angelegt falls eine Architekturentscheidung getroffen wurde
+        - [ ] PR wird erst nach Abschluss **aller** Tasks der Story geöffnet

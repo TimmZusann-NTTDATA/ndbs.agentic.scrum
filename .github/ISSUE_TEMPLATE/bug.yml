@@ -1,0 +1,87 @@
+name: "🐛 Bug"
+description: "Defekt / unerwartetes Verhalten melden"
+title: "[Bug] "
+labels: ["Bug", "New"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug melden
+        Beschreibe den Fehler so konkret wie möglich. Copilot generiert daraus die Fix-Tasks.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐛 Fehlerbeschreibung"
+      description: "Kurze, klare Beschreibung des Problems"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "🔁 Schritte zur Reproduktion"
+      placeholder: |
+        1. Gehe zu ...
+        2. Klicke auf ...
+        3. Sieh Fehler: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "✅ Erwartetes Verhalten"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "❌ Tatsächliches Verhalten"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "🌍 Umgebung"
+      placeholder: |
+        - Browser / Version:
+        - OS:
+        - .NET Version:
+        - Node Version:
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "🚨 Schweregrad"
+      options:
+        - "Critical – Anwendung nicht nutzbar"
+        - "High – Hauptfunktion betroffen"
+        - "Medium – Teilfunktion betroffen"
+        - "Low – Kosmetischer Fehler"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "✅ Akzeptanzkriterien für den Fix"
+      placeholder: |
+        - [ ] Fehler tritt nicht mehr auf
+        - [ ] Regressionstest vorhanden
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Weitere Hinweise, Logs, Fehlermeldungen oder Beobachtungen die bei der Analyse helfen könnten"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Screenshots, Screencasts, Logdateien oder sonstige Belege zum Bug.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.
