@@ -1,0 +1,29 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# SQLite dev database
+*.db
+*.db-shm
+*.db-wal
+
+# NuGet packages
+packages/
+*.nupkg
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+
+# Node / Frontend
+node_modules/
+dist/
+.pnpm-store/
+
+# OS
+.DS_Store
+Thumbs.db
