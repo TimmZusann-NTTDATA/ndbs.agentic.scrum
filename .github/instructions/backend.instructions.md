@@ -27,50 +27,51 @@ applyTo: "src/**,tests/**"
 ## Projektstruktur (Clean Architecture + Feature Slices)
 
 ```
-src/
-  Backend.Domain/
-    # Entities, Value Objects, Domain Events, Interfaces
-    # Kein Verweis auf andere Projekte
-    Features/
-      <Feature>/
-        <Entity>.cs
-        I<Feature>Repository.cs
+backend/
+  src/
+    Backend.Domain/
+      # Entities, Value Objects, Domain Events, Interfaces
+      # Kein Verweis auf andere Projekte
+      Features/
+        <Feature>/
+          <Entity>.cs
+          I<Feature>Repository.cs
 
-  Backend.Application/
-    # Use Cases, CQRS Handler, DTOs, Validation
-    # Verweist nur auf Domain
-    Features/
-      <Feature>/
-        Commands/
-          Create<Feature>Command.cs
-          Create<Feature>Handler.cs
-        Queries/
-          Get<Feature>Query.cs
-          Get<Feature>Handler.cs
-        Validators/
-          Create<Feature>Validator.cs
+    Backend.Application/
+      # Use Cases, CQRS Handler, DTOs, Validation
+      # Verweist nur auf Domain
+      Features/
+        <Feature>/
+          Commands/
+            Create<Feature>Command.cs
+            Create<Feature>Handler.cs
+          Queries/
+            Get<Feature>Query.cs
+            Get<Feature>Handler.cs
+          Validators/
+            Create<Feature>Validator.cs
 
-  Backend.Infrastructure/
-    # EF Core, externe Services, Repository-Implementierungen
-    # Verweist auf Domain + Application
-    Persistence/
-      Configurations/
-      Migrations/
-      Repositories/
+    Backend.Infrastructure/
+      # EF Core, externe Services, Repository-Implementierungen
+      # Verweist auf Domain + Application
+      Persistence/
+        Configurations/
+        Migrations/
+        Repositories/
 
-  Backend.API/
-    # Controller / Minimal API Endpoints, Middleware, DI-Registrierung
-    # Verweist auf Application + Infrastructure
-    Features/
-      <Feature>/
-        <Feature>Endpoints.cs   # Minimal API
-        # oder
-        <Feature>Controller.cs  # Controller API
+    Backend.API/
+      # Controller / Minimal API Endpoints, Middleware, DI-Registrierung
+      # Verweist auf Application + Infrastructure
+      Features/
+        <Feature>/
+          <Feature>Endpoints.cs   # Minimal API
+          # oder
+          <Feature>Controller.cs  # Controller API
 
-tests/
-  Backend.Domain.Tests/
-  Backend.Application.Tests/
-  Backend.API.Tests/
+  tests/
+    Backend.Domain.Tests/
+    Backend.Application.Tests/
+    Backend.API.Tests/
 ```
 
 **Abhängigkeitsregel:** Domain ← Application ← Infrastructure ← API  
@@ -164,7 +165,8 @@ public void CreateOrder_WithInvalidQuantity_ThrowsDomainException()
 Jedes Feature registriert seine eigenen Services in einer `ServiceCollectionExtensions`-Klasse:
 
 ```csharp
-// src/Backend.Application/Features/<Feature>/ServiceCollectionExtensions.cs
+```csharp
+// backend/src/Backend.Application/Features/<Feature>/ServiceCollectionExtensions.cs
 public static class <Feature>ServiceCollectionExtensions
 {
     public static IServiceCollection Add<Feature>Services(
@@ -188,11 +190,11 @@ builder.Services.Add<Feature>Services();
 - **Migrations** immer aus dem Repo-Root ausführen:
   ```bash
   dotnet ef migrations add <Name> \
-    --project src/Backend.Infrastructure \
-    --startup-project src/Backend.API
+    --project backend/src/Backend.Infrastructure \
+    --startup-project backend/src/Backend.API
   dotnet ef database update \
-    --project src/Backend.Infrastructure \
-    --startup-project src/Backend.API
+    --project backend/src/Backend.Infrastructure \
+    --startup-project backend/src/Backend.API
   ```
 - Migrations-Dateien werden committet
 - `ndbs-dev.db` ist in `.gitignore`
