@@ -32,7 +32,22 @@ C4Context
 
 ## 4. Container (C4 Level 2)
 
-> Wird mit dem ersten Feature ergänzt. Siehe `docs/diagrams/container.md`.
+```mermaid
+C4Container
+  title Container – ndbs.agentic.scrum
+
+  Person(dev, "Entwickler / PO", "Nutzt die Anwendung")
+
+  System_Boundary(app, "Demo-Anwendung") {
+    Container(frontend, "Frontend", "React / TypeScript", "Single Page Application")
+    Container(api, "Backend API", ".NET 10 / ASP.NET Core", "REST API (Minimal APIs)")
+    ContainerDb(db, "Datenbank", "SQLite", "Lokale Entwicklungsdatenbank")
+  }
+
+  Rel(dev, frontend, "Nutzt", "HTTPS")
+  Rel(frontend, api, "REST-Aufrufe", "HTTP/JSON")
+  Rel(api, db, "Liest / Schreibt", "EF Core")
+```
 
 ## 5. Laufzeitszenarien
 
@@ -44,9 +59,9 @@ C4Context
 
 ## 7. Architekturentscheidungen
 
-| Nr.   | Titel                        | Status     |
-|-------|------------------------------|------------|
-| –     | *(noch keine ADRs vorhanden)* | –         |
+| Nr.    | Titel                                   | Status     |
+|--------|-----------------------------------------|------------|
+| ADR-0001 | Clean Architecture für das .NET Backend | Akzeptiert |
 
 ## 8. Risiken / Tech Debt
 
