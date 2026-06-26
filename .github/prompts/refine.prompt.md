@@ -17,17 +17,17 @@ auf die Antwort des Nutzers bevor du weitermachst.
 Führe folgenden Befehl aus und zeige das Ergebnis als nummerierte Liste:
 
 ```bash
-gh issue list --label "Story" --label "ForRefinement" --json number,title,body --limit 50
+gh issue list --label "ForRefinement" --json number,title,labels --limit 50
 ```
 
-Zeige die Issues als übersichtliche Liste:
+Filtere auf Issues die das Label `Story`, `Technical` oder `Bug` tragen und zeige sie als übersichtliche Liste:
 ```
-#<nr> – <title>
+#<nr> [Story|Technical|Bug] – <title>
 ```
 
 Falls keine Issues gefunden werden:
-> Keine Stories mit Label `Story` + `ForRefinement` gefunden.
-> Bitte zuerst eine Story erstellen und das Label auf `ForRefinement` setzen.
+> Keine Issues mit Label `ForRefinement` gefunden.
+> Bitte ein Issue erstellen und das Label auf `ForRefinement` setzen.
 Dann beende den Prozess.
 
 ---

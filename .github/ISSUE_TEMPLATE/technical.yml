@@ -1,0 +1,74 @@
+name: "⚙️ Technical"
+description: "Technische Aufgabe ohne direkten User-Nutzen (Setup, Scaffolding, Infrastruktur, Refactoring)"
+title: "[Technical] "
+labels: ["Technical", "New"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Technische Aufgabe erstellen
+        Für technische Arbeiten die keinen direkten User-Nutzen haben, aber notwendig sind –
+        z.B. initiales Projekt-Setup, Scaffolding, Infrastruktur, größere Refactorings.
+        Copilot generiert daraus die konkreten Sub-Tasks.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: "🎯 Ziel"
+      description: "Was soll erreicht werden? Was ist danach vorhanden / möglich?"
+      placeholder: "Nach Abschluss dieser Aufgabe ist die Backend-Solution aufgesetzt und lauffähig."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "💡 Motivation / Warum jetzt?"
+      description: "Warum ist diese technische Arbeit notwendig? Was wird sie ermöglichen?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: "📦 Scope"
+      description: "Was gehört konkret dazu? Welche Bereiche sind betroffen?"
+      placeholder: |
+        - Backend-Solution mit Clean Architecture Struktur anlegen
+        - Projektverweise konfigurieren
+        - EF Core einrichten
+        - ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: "🚫 Out of Scope"
+      description: "Was gehört explizit NICHT dazu?"
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "✅ Akzeptanzkriterien"
+      description: "Wann ist diese Aufgabe erledigt?"
+      placeholder: |
+        - [ ] Solution baut fehlerfrei
+        - [ ] Tests laufen durch
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "💬 Zusätzlicher Kontext (optional)"
+      description: "Technische Vorgaben, Constraints, Links zu ADRs oder Referenzprojekten"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: "📎 Anhänge (optional)"
+      description: |
+        Diagramme, Referenzdokumente oder sonstige Materialien.
+        Dateien hier per Drag & Drop oder Klick einfügen – GitHub wandelt sie automatisch in Links um.
