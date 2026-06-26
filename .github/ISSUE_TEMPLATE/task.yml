@@ -10,6 +10,15 @@ body:
         > Tasks sind die technischen Unteraufgaben einer Story oder eines Bugs.
 
   - type: input
+    id: branch
+    attributes:
+      label: "🌿 Feature-Branch"
+      description: "Branch der Story, auf dem dieser Task implementiert wird (ein Branch für alle Tasks der Story)"
+      placeholder: "story/42-user-login"
+    validations:
+      required: true
+
+  - type: input
     id: parent
     attributes:
       label: "👆 Parent Issue"
@@ -75,5 +84,6 @@ body:
         - [ ] Code implementiert und kompilierbar
         - [ ] Unit Tests geschrieben und grün
         - [ ] Keine neuen Linting-Fehler
-        - [ ] PR erstellt
+        - [ ] Commit auf Story-Branch mit Referenz auf diesen Task
         - [ ] Akzeptanzkriterien der Parent-Story erfüllt
+        - [ ] PR wird erst nach Abschluss **aller** Tasks der Story geöffnet

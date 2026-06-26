@@ -92,8 +92,20 @@ Epic (Mensch erstellt)
 1. **Mensch erstellt** Epic / Story / Bug → erhält automatisch `status: backlog`
 2. **Mensch setzt** Label auf `status: refinement` wenn das Issue inhaltlich klar genug für Task-Generierung ist
 3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung → setzt Parent-Issue auf `status: ready`
-4. **Dev / Agent** arbeitet Tasks ab (Branch → Code → Tests → PR) → `status: in-progress`
-5. **Mensch reviewed** den PR und merged → `status: done`
+4. **Mensch weist** die Story / den Bug **dem Agent zu** → Agent erstellt einen einzigen Feature-Branch für die gesamte Story
+5. **Agent arbeitet alle Tasks sequenziell** auf demselben Branch ab → setzt Tasks auf `status: done` wenn erledigt → setzt Story auf `status: in-progress`
+6. **Agent öffnet einen PR** wenn alle Tasks der Story abgeschlossen sind → setzt Story auf `status: done`
+7. **Mensch reviewed** den PR und merged
+
+### Branch-Strategie
+
+> ⚠️ **Ein Branch pro Story – nicht pro Task.**
+
+- **Branch-Name:** `story/<issue-nummer>-<kurztitel>` z.B. `story/42-user-login`
+- **Alle Tasks** einer Story werden auf demselben Branch implementiert
+- **Commits** folgen Conventional Commits und referenzieren den jeweiligen Task: `feat: add login endpoint (closes #43)`
+- **Ein einziger PR** pro Story gegen `main` → reduziert Review-Aufwand
+- Der PR-Titel referenziert die Story: `feat: [#42] User Login`
 
 ### Task-Qualitätskriterien
 
@@ -108,8 +120,15 @@ Ein Task ist ausreichend spezifiziert, wenn Copilot:
 
 ## Definition of Done (DoD)
 
+### Task-Ebene
 - [ ] Code implementiert und kompilierbar
 - [ ] Unit Tests geschrieben und grün
 - [ ] Keine neuen Linting-Fehler
-- [ ] PR erstellt mit Beschreibung
-- [ ] Akzeptanzkriterien der Parent-Story erfüllt
+- [ ] Commit auf dem Story-Branch mit Referenz auf den Task (`closes #<task-nr>`)
+- [ ] Task-Issue auf `status: done` gesetzt
+
+### Story-Ebene (nach allen Tasks)
+- [ ] Alle Tasks der Story auf `status: done`
+- [ ] Ein PR gegen `main` geöffnet (Titel: `feat: [#<story-nr>] <Story-Titel>`)
+- [ ] Akzeptanzkriterien der Story im PR dokumentiert
+- [ ] Story-Issue auf `status: done` gesetzt
