@@ -129,6 +129,9 @@ Ein Task ist ausreichend spezifiziert, wenn Copilot:
 
 ### Story-Ebene (nach allen Tasks)
 - [ ] Alle Tasks der Story auf `status: done`
+- [ ] Feature-Dokumentation erstellt / aktualisiert (`docs/features/<feature>.md`)
+- [ ] ADR angelegt falls eine Architekturentscheidung getroffen wurde (`docs/adr/`)
+- [ ] `architecture.md` aktualisiert falls sich Struktur oder Kontext geändert hat
 - [ ] Ein PR gegen `main` geöffnet (Titel: `feat: [#<story-nr>] <Story-Titel>`)
 - [ ] Akzeptanzkriterien der Story im PR dokumentiert
 - [ ] Story-Issue auf `status: done` gesetzt

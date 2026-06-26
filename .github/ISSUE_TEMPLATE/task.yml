@@ -86,4 +86,6 @@ body:
         - [ ] Keine neuen Linting-Fehler
         - [ ] Commit auf Story-Branch mit Referenz auf diesen Task
         - [ ] Akzeptanzkriterien der Parent-Story erfüllt
+        - [ ] Feature-Dokumentation in `docs/features/<feature>.md` erstellt / aktualisiert
+        - [ ] ADR angelegt falls eine Architekturentscheidung getroffen wurde
         - [ ] PR wird erst nach Abschluss **aller** Tasks der Story geöffnet
