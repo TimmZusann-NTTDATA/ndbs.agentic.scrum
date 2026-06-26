@@ -81,6 +81,46 @@ frontend/
   };
   ```
 
+## Umgebungsvariablen & API-Anbindung
+
+- API-Basis-URL aus Umgebungsvariablen: `import.meta.env.VITE_API_URL`
+- Lokale Entwicklung: `frontend/.env.development` mit `VITE_API_URL=http://localhost:5000`
+- `.env.development` darf committet werden (keine Secrets) – `.env.local` niemals
+- Ein zentraler API-Client in `src/lib/api-client.ts` konfiguriert die Basis-URL:
+
+```typescript
+// src/lib/api-client.ts
+export const apiClient = {
+  baseUrl: import.meta.env.VITE_API_URL,
+  async get<T>(path: string): Promise<T> {
+    const res = await fetch(`${this.baseUrl}${path}`);
+    if (!res.ok) throw new ApiError(res.status, await res.text());
+    return res.json();
+  },
+  // post, put, delete analog
+};
+```
+
+Alle Feature-Services nutzen diesen Client, nie direktes `fetch` mit hardcodierter URL.
+
+## TypeScript-Konfiguration
+
+- `strict: true` in `tsconfig.json` – keine Ausnahmen
+- Path-Aliases für saubere Imports:
+  ```json
+  { "paths": { "@/*": ["./src/*"] } }
+  ```
+- Imports: `import { Foo } from '@/features/foo'` statt relativer Pfade über Feature-Grenzen
+
+## Entwicklungsserver
+
+```bash
+pnpm dev        # startet auf http://localhost:5173
+pnpm build      # Produktions-Build prüfen
+pnpm test       # Tests im Watch-Modus
+pnpm test --run # Tests einmalig (für CI / vor PR)
+```
+
 ## API-Kommunikation
 
 - Alle API-Calls liegen in `features/<feature>/services/`.

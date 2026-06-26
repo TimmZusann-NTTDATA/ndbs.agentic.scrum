@@ -19,7 +19,7 @@ vollständig ausgearbeitete Tasks (Sub-Issues) generiert und abarbeitet.
 - **Architektur:** Clean Architecture (Domain / Application / Infrastructure / API Layer)
 - **API-Stil:** REST (ASP.NET Core Web API)
 - **ORM:** Entity Framework Core
-- **Tests:** xUnit, Moq, FluentAssertions
+- **Tests:** xUnit, FluentAssertions, NSubstitute
 - **Projektstruktur:**
   ```
   src/
@@ -126,7 +126,7 @@ Ein Task ist ausreichend spezifiziert, wenn Copilot:
 - [ ] Unit Tests geschrieben und grün
 - [ ] Keine neuen Linting-Fehler
 - [ ] Commit auf dem Story-Branch mit Referenz auf den Task (`closes #<task-nr>`)
-- [ ] Task-Issue auf `status: done` gesetzt
+- [ ] Task-Issue auf `Done` gesetzt
 
 ### Story-Ebene (nach allen Tasks)
 - [ ] Alle Tasks der Story auf `Done`
@@ -136,3 +136,234 @@ Ein Task ist ausreichend spezifiziert, wenn Copilot:
 - [ ] Ein PR gegen `main` geöffnet (Titel: `feat: [#<story-nr>] <Story-Titel>`)
 - [ ] Akzeptanzkriterien der Story im PR dokumentiert
 - [ ] Story-Issue auf `ForReview` gesetzt (→ nach Merge auf `Done`)
+
+---
+
+## Agent-Startup-Guide
+
+Wenn dem Agent eine Story zugewiesen wird, arbeitet er **diese Schritte der Reihe nach ab**.
+
+### 1. Kontext laden
+
+```bash
+# Zugewiesene Story laden
+gh issue view <story-nr> --json number,title,body,labels,assignees
+
+# Alle Sub-Tasks der Story laden
+gh issue list --json number,title,body,labels \
+  | jq '[.[] | select(.parent.number == <story-nr>)]'
+```
+
+Lies die Story und alle Tasks vollständig. Stelle sicher dass du die Akzeptanzkriterien
+und die technischen Anforderungen jedes Tasks verstehst bevor du anfängst.
+
+### 2. Feature-Branch erstellen
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b story/<story-nr>-<kurztitel>
+git push -u origin story/<story-nr>-<kurztitel>
+```
+
+Story-Label auf `InProgress` setzen:
+```bash
+gh issue edit <story-nr> --remove-label "Ready" --add-label "InProgress"
+```
+
+### 3. Tasks sequenziell abarbeiten
+
+Für jeden Task (in Abhängigkeitsreihenfolge):
+
+1. Task-Label auf `InProgress` setzen:
+   ```bash
+   gh issue edit <task-nr> --remove-label "Ready" --add-label "InProgress"
+   ```
+
+2. Code implementieren gemäß Task-Beschreibung
+
+3. Tests ausführen und grün stellen (siehe Build & Test-Befehle)
+
+4. Committen mit Task-Referenz:
+   ```bash
+   git add .
+   git commit -m "feat: <beschreibung> (closes #<task-nr>)"
+   git push
+   ```
+
+5. Task-Label auf `Done` setzen:
+   ```bash
+   gh issue edit <task-nr> --remove-label "InProgress" --add-label "Done"
+   ```
+
+### 4. Fehlerbehandlung während der Implementierung
+
+- **Tests schlagen fehl:** Fehler beheben bevor der nächste Task begonnen wird. Niemals
+  einen Task als `Done` markieren wenn Tests rot sind.
+- **Code kompiliert nicht:** Niemals committen. Problem zuerst beheben.
+- **Anforderung unklar:** Kontext aus dem Task-Body und dem Parent-Story-Body holen.
+  Wenn beides nicht ausreicht, in einem Issue-Kommentar nachfragen und auf Antwort warten.
+- **Abhängigkeit zu einem anderen Task nicht erfüllt:** Abhängigen Task zuerst abschließen.
+
+### 5. Pull Request öffnen
+
+Nachdem **alle Tasks** der Story auf `Done` sind:
+
+```bash
+gh pr create \
+  --title "feat: [#<story-nr>] <Story-Titel>" \
+  --body "$(cat <<'EOF'
+## Zusammenfassung
+
+Schließt #<story-nr>
+
+<Kurze Beschreibung was implementiert wurde>
+
+## Akzeptanzkriterien
+
+- [x] <Kriterium 1>
+- [x] <Kriterium 2>
+
+## Enthaltene Tasks
+
+- #<task-nr> – <task-titel>
+- #<task-nr> – <task-titel>
+
+## Technische Hinweise
+
+<Architekturentscheidungen, Besonderheiten, bekannte Einschränkungen>
+
+## Dokumentation
+
+- [ ] `docs/features/<feature>.md` aktualisiert
+- [ ] ADR angelegt (falls zutreffend)
+EOF
+)" \
+  --base main
+```
+
+Story-Label auf `ForReview` setzen:
+```bash
+gh issue edit <story-nr> --remove-label "InProgress" --add-label "ForReview"
+```
+
+---
+
+## Build & Test-Befehle
+
+### Backend
+
+```bash
+# Bauen
+dotnet build src/
+
+# Alle Tests ausführen
+dotnet test tests/
+
+# Einzelnes Testprojekt
+dotnet test tests/Backend.Application.Tests/
+
+# EF Core Migration anlegen
+dotnet ef migrations add <MigrationName> \
+  --project src/Backend.Infrastructure \
+  --startup-project src/Backend.API
+
+# Datenbank aktualisieren
+dotnet ef database update \
+  --project src/Backend.Infrastructure \
+  --startup-project src/Backend.API
+```
+
+### Frontend
+
+```bash
+# Abhängigkeiten installieren
+pnpm install
+
+# Dev-Server starten (http://localhost:5173)
+pnpm dev
+
+# Tests ausführen
+pnpm test
+
+# Tests einmalig (CI-Modus)
+pnpm test --run
+
+# Build prüfen
+pnpm build
+```
+
+### Vor dem PR: Vollständige Verifikation
+
+```bash
+# Backend
+dotnet build src/ && dotnet test tests/
+
+# Frontend
+cd frontend && pnpm build && pnpm test --run
+```
+
+Beide müssen fehlerfrei durchlaufen bevor ein PR geöffnet wird.
+
+---
+
+## Umgebung & Konfiguration
+
+### Backend (`src/Backend.API/appsettings.Development.json`)
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=ndbs-dev.db"
+  },
+  "Cors": {
+    "AllowedOrigins": ["http://localhost:5173"]
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.EntityFrameworkCore": "Warning"
+    }
+  }
+}
+```
+
+- **Datenbank:** SQLite für lokale Entwicklung (`ndbs-dev.db` im API-Projektverzeichnis)
+- **CORS:** Frontend-Origin `http://localhost:5173` ist in Development erlaubt
+- **Ports:** Backend läuft auf `http://localhost:5000` (Development)
+
+### Frontend (`frontend/.env.development`)
+
+```
+VITE_API_URL=http://localhost:5000
+```
+
+- Nie `.env`-Dateien mit Secrets in Git committen
+- `.env.development` ist für lokale Entwicklung und darf committet werden (keine Secrets)
+
+### CORS-Konfiguration (Backend)
+
+In `Program.cs` muss CORS für Development explizit konfiguriert sein:
+
+```csharp
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Development", policy =>
+        policy.WithOrigins(builder.Configuration
+                  .GetSection("Cors:AllowedOrigins").Get<string[]>()!)
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
+
+// Nach builder.Build():
+if (app.Environment.IsDevelopment())
+    app.UseCors("Development");
+```
+
+### OpenAPI / Swagger
+
+Das Backend stellt in Development automatisch Swagger UI bereit:
+- URL: `http://localhost:5000/swagger`
+- Konfiguration in `Program.cs` via `builder.Services.AddEndpointsApiExplorer()` und
+  `builder.Services.AddSwaggerGen()`
+

@@ -158,6 +158,44 @@ public void CreateOrder_WithInvalidQuantity_ThrowsDomainException()
 - Test-Klassen: eine Datei pro zu testende Klasse, `<Klasse>Tests.cs`.
 - Keine `[Theory]` mit mehr als 5–6 Fällen – lieber sprechende `[Fact]`-Methoden.
 
+## Dependency Injection – Registrierung
+
+Jedes Feature registriert seine eigenen Services in einer `ServiceCollectionExtensions`-Klasse:
+
+```csharp
+// src/Backend.Application/Features/<Feature>/ServiceCollectionExtensions.cs
+public static class <Feature>ServiceCollectionExtensions
+{
+    public static IServiceCollection Add<Feature>Services(
+        this IServiceCollection services)
+    {
+        services.AddScoped<I<Feature>Repository, <Feature>Repository>();
+        // Handler, Validators, ...
+        return services;
+    }
+}
+```
+
+In `Program.cs` wird dann nur noch aggregiert:
+```csharp
+builder.Services.Add<Feature>Services();
+```
+
+## Datenbank
+
+- **Lokal:** SQLite (`Data Source=ndbs-dev.db`)
+- **Migrations** immer aus dem Repo-Root ausführen:
+  ```bash
+  dotnet ef migrations add <Name> \
+    --project src/Backend.Infrastructure \
+    --startup-project src/Backend.API
+  dotnet ef database update \
+    --project src/Backend.Infrastructure \
+    --startup-project src/Backend.API
+  ```
+- Migrations-Dateien werden committet
+- `ndbs-dev.db` ist in `.gitignore`
+
 ## Fehlerbehandlung
 
 - **Domain-Exceptions** für Verletzungen fachlicher Invarianten (`DomainException`).
