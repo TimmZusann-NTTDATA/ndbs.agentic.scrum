@@ -79,6 +79,7 @@ Epic (Mensch erstellt)
 |-----------------|-------------------------------------------------------------|
 | `Epic`          | Übergeordnetes Ziel                                         |
 | `Story`         | User-sichtbares Feature                                     |
+| `Technical`     | Technische Aufgabe (Setup, Scaffolding, Infrastruktur)      |
 | `Bug`           | Defekt / unerwartetes Verhalten                             |
 | `Task`          | Technische Aufgabe (von Copilot generiert)                  |
 | `Spike`         | Analyse- / Rechercheaufgabe                                 |
@@ -91,7 +92,7 @@ Epic (Mensch erstellt)
 
 ### Prozess
 
-1. **Mensch erstellt** Epic / Story / Bug → erhält automatisch `New`
+1. **Mensch erstellt** Epic / Story / Technical / Bug → erhält automatisch `New`
 2. **Mensch setzt** Label auf `ForRefinement` wenn das Issue inhaltlich klar genug für Task-Generierung ist
 3. **Copilot wird beauftragt**, Tasks zu generieren → erstellt Sub-Issues mit vollständiger technischer Ausarbeitung → setzt Parent-Issue auf `Ready`
 4. **Mensch weist** die Story / den Bug **dem Agent zu** → Agent erstellt einen einzigen Feature-Branch für die gesamte Story
@@ -103,7 +104,7 @@ Epic (Mensch erstellt)
 
 > ⚠️ **Ein Branch pro Story – nicht pro Task.**
 
-- **Branch-Name:** `feature/<issue-nummer>--<kurztitel>` z.B. `feature/42--user-login` (Story) oder `bugfix/<issue-nummer>--<kurztitel>` z.B. `bugfix/7--login-crash` (Bug)
+- **Branch-Name:** `feature/<issue-nummer>--<kurztitel>` z.B. `feature/42--user-login` (Story) oder `bugfix/<issue-nummer>--<kurztitel>` z.B. `bugfix/7--login-crash` (Bug) oder `chore/<issue-nummer>--<kurztitel>` z.B. `chore/3--backend-setup` (Technical)
 - **Alle Tasks** einer Story werden auf demselben Branch implementiert
 - **Commits** folgen Conventional Commits und referenzieren den jeweiligen Task: `feat: add login endpoint (closes #43)`
 - **Ein einziger PR** pro Story gegen `main` → reduziert Review-Aufwand

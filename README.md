@@ -49,6 +49,7 @@ Epic erstellen
 |---|---|
 | 🟣 `Epic` | Übergeordnetes Ziel, bündelt mehrere Stories |
 | 🟢 `Story` | User-sichtbares Feature aus Nutzerperspektive |
+| 🟠 `Technical` | Technische Aufgabe (Setup, Scaffolding, Infrastruktur) |
 | 🔵 `Task` | Technischer Sub-Task – wird von Copilot generiert |
 | 🔴 `Bug` | Defekt oder unerwartetes Verhalten |
 | 🟡 `Spike` | Analyse- oder Rechercheaufgabe |
@@ -77,6 +78,7 @@ Beschreibe *was* du bauen möchtest – schlank und aus Nutzersicht.
 Das Template führt dich durch die nötigen Felder (User Story + Akzeptanzkriterien).
 
 → [Neue Story erstellen](../../issues/new?template=story.yml)
+→ [Neue technische Aufgabe erstellen](../../issues/new?template=technical.yml)
 → [Neuen Bug melden](../../issues/new?template=bug.yml)
 → [Neuen Spike anlegen](../../issues/new?template=spike.yml)
 
@@ -116,6 +118,7 @@ Nach dem Merge: Story-Label auf `Done` setzen.
 > **Ein Branch pro Story – nicht pro Task.**
 
 - Branch-Name: `feature/<issue-nr>--<kurztitel>` (z.B. `feature/12--user-login`) für Stories
+- Branch-Name: `chore/<issue-nr>--<kurztitel>` (z.B. `chore/3--backend-setup`) für Technical
 - Branch-Name: `bugfix/<issue-nr>--<kurztitel>` (z.B. `bugfix/7--login-crash`) für Bugs
 - Alle Tasks einer Story landen auf demselben Branch
 - Ein einziger PR pro Story gegen `main`
