@@ -64,9 +64,3 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: related
-    attributes:
-      label: "🔗 Zusammenhang"
-      description: "Zu welcher Story / welchem Epic gehört dieser Spike?"
-      placeholder: "Blockiert Story #X / gehört zu Epic #Y"

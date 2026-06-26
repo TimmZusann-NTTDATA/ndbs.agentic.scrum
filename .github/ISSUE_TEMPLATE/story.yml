@@ -9,13 +9,6 @@ body:
         ## Story erstellen
         Beschreibe das Feature aus Nutzersicht. Copilot generiert daraus die technischen Tasks.
 
-  - type: input
-    id: epic
-    attributes:
-      label: "🏔️ Zugehöriges Epic"
-      description: "Issue-Nummer des übergeordneten Epics"
-      placeholder: "#123"
-
   - type: textarea
     id: user_story
     attributes:

@@ -9,24 +9,6 @@ body:
         > ⚠️ **Dieses Template wird von Copilot ausgefüllt**, nicht vom Menschen.
         > Tasks sind die technischen Unteraufgaben einer Story oder eines Bugs.
 
-  - type: input
-    id: branch
-    attributes:
-      label: "🌿 Feature-Branch"
-      description: "Branch der Story, auf dem dieser Task implementiert wird (ein Branch für alle Tasks der Story)"
-      placeholder: "story/42-user-login"
-    validations:
-      required: true
-
-  - type: input
-    id: parent
-    attributes:
-      label: "👆 Parent Issue"
-      description: "Story oder Bug, zu dem dieser Task gehört"
-      placeholder: "#123"
-    validations:
-      required: true
-
   - type: textarea
     id: objective
     attributes:
@@ -68,13 +50,6 @@ body:
         - [ ] Test: Randfall – ...
     validations:
       required: true
-
-  - type: textarea
-    id: dependencies
-    attributes:
-      label: "🔗 Abhängigkeiten"
-      description: "Welche anderen Tasks müssen zuerst abgeschlossen sein?"
-      placeholder: "Blockiert von: #X, #Y"
 
   - type: textarea
     id: dod
