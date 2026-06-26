@@ -92,7 +92,7 @@ Der Body jedes Tasks muss folgende Abschnitte enthalten:
 
 ```markdown
 **Parent Story:** #<story-nummer>
-**Feature-Branch:** story/<story-nummer>-<kurztitel>
+**Feature-Branch:** feature/<story-nummer>--<kurztitel>
 
 ## 🎯 Aufgabe
 <konkrete Beschreibung was zu tun ist>
@@ -119,7 +119,7 @@ Der Body jedes Tasks muss folgende Abschnitte enthalten:
 - [ ] Code implementiert und kompilierbar
 - [ ] Unit Tests geschrieben und grün
 - [ ] Keine neuen Linting-Fehler
-- [ ] Commit auf Branch `story/<story-nummer>-<kurztitel>` mit Referenz auf diesen Task
+- [ ] Commit auf Branch `feature/<story-nummer>--<kurztitel>` mit Referenz auf diesen Task
 - [ ] Feature-Dokumentation in `docs/features/<feature>.md` erstellt / aktualisiert
 - [ ] ADR angelegt falls eine Architekturentscheidung getroffen wurde
 - [ ] PR wird erst nach Abschluss **aller** Tasks der Story geöffnet

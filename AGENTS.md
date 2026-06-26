@@ -103,7 +103,7 @@ Epic (Mensch erstellt)
 
 > ⚠️ **Ein Branch pro Story – nicht pro Task.**
 
-- **Branch-Name:** `story/<issue-nummer>-<kurztitel>` z.B. `story/42-user-login`
+- **Branch-Name:** `feature/<issue-nummer>--<kurztitel>` z.B. `feature/42--user-login` (Story) oder `bugfix/<issue-nummer>--<kurztitel>` z.B. `bugfix/7--login-crash` (Bug)
 - **Alle Tasks** einer Story werden auf demselben Branch implementiert
 - **Commits** folgen Conventional Commits und referenzieren den jeweiligen Task: `feat: add login endpoint (closes #43)`
 - **Ein einziger PR** pro Story gegen `main` → reduziert Review-Aufwand
@@ -163,8 +163,8 @@ und die technischen Anforderungen jedes Tasks verstehst bevor du anfängst.
 ```bash
 git checkout main
 git pull origin main
-git checkout -b story/<story-nr>-<kurztitel>
-git push -u origin story/<story-nr>-<kurztitel>
+git checkout -b feature/<story-nr>--<kurztitel>
+git push -u origin feature/<story-nr>--<kurztitel>
 ```
 
 Story-Label auf `InProgress` setzen:

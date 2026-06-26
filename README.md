@@ -99,7 +99,7 @@ Copilot stellt gezielte technische Fragen und legt danach vollständig ausgearbe
 ### 5. Story dem Agent zuweisen
 Die Story ist auf `Ready` – weise sie dem Copilot Agent zu.
 Der Agent:
-- erstellt einen Feature-Branch (`story/<nr>-<titel>`)
+- erstellt einen Feature-Branch (`feature/<nr>--<titel>` für Stories, `bugfix/<nr>--<titel>` für Bugs)
 - arbeitet alle Tasks sequenziell ab
 - schreibt Tests
 - aktualisiert die Dokumentation in `docs/`
@@ -115,7 +115,8 @@ Nach dem Merge: Story-Label auf `Done` setzen.
 
 > **Ein Branch pro Story – nicht pro Task.**
 
-- Branch-Name: `story/<issue-nr>-<kurztitel>` (z.B. `story/12-user-login`)
+- Branch-Name: `feature/<issue-nr>--<kurztitel>` (z.B. `feature/12--user-login`) für Stories
+- Branch-Name: `bugfix/<issue-nr>--<kurztitel>` (z.B. `bugfix/7--login-crash`) für Bugs
 - Alle Tasks einer Story landen auf demselben Branch
 - Ein einziger PR pro Story gegen `main`
 - Commits referenzieren den jeweiligen Task: `feat: add login endpoint (closes #13)`
