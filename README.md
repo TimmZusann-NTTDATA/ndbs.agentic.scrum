@@ -78,6 +78,7 @@ Das Template führt dich durch die nötigen Felder (User Story + Akzeptanzkriter
 
 → [Neue Story erstellen](../../issues/new?template=story.yml)
 → [Neuen Bug melden](../../issues/new?template=bug.yml)
+→ [Neuen Spike anlegen](../../issues/new?template=spike.yml)
 
 ### 3. Story für Refinement freigeben
 Wenn die Story inhaltlich klar ist: Label von `New` auf `ForRefinement` ändern.
