@@ -360,10 +360,23 @@ if (app.Environment.IsDevelopment())
     app.UseCors("Development");
 ```
 
-### OpenAPI / Swagger
+### OpenAPI / Scalar
 
-Das Backend stellt in Development automatisch Swagger UI bereit:
-- URL: `http://localhost:5000/swagger`
-- Konfiguration in `Program.cs` via `builder.Services.AddEndpointsApiExplorer()` und
-  `builder.Services.AddSwaggerGen()`
+Das Backend stellt in Development automatisch die **Scalar API Reference** bereit:
+- URL: `http://localhost:5000/scalar`
+- NuGet-Paket: `Scalar.AspNetCore` (OSS, kostenlos)
+- Konfiguration in `Program.cs`:
+
+```csharp
+builder.Services.AddOpenApi();
+
+// Nach builder.Build():
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
+```
+
+Kein `AddSwaggerGen` / `UseSwaggerUI` – ausschließlich Scalar verwenden.
 

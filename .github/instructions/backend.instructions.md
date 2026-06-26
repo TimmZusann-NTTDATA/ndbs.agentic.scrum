@@ -131,6 +131,7 @@ public static class UserEndpoints
 - HTTP-Statuscodes korrekt verwenden: `200`, `201`, `204`, `400`, `404`, `422`, `500`.
 - Validierungsfehler als `ValidationProblemDetails` (RFC 7807).
 - Versionierung über URL-Präfix (`/api/v1/`) wenn mehrere Versionen koexistieren.
+- **API-Dokumentation:** `Scalar.AspNetCore` verwenden – kein SwaggerUI, kein NSwag.
 
 ## Tests (xUnit + FluentAssertions + NSubstitute)
 
