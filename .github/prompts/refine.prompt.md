@@ -17,7 +17,7 @@ auf die Antwort des Nutzers bevor du weitermachst.
 Führe folgenden Befehl aus und zeige das Ergebnis als nummerierte Liste:
 
 ```bash
-gh issue list --label "Story" --label "New" --json number,title,body --limit 50
+gh issue list --label "Story" --label "ForRefinement" --json number,title,body --limit 50
 ```
 
 Zeige die Issues als übersichtliche Liste:
@@ -26,7 +26,8 @@ Zeige die Issues als übersichtliche Liste:
 ```
 
 Falls keine Issues gefunden werden:
-> Keine Stories mit Label `Story` + `New` gefunden. Bitte zuerst eine Story erstellen.
+> Keine Stories mit Label `Story` + `ForRefinement` gefunden.
+> Bitte zuerst eine Story erstellen und das Label auf `ForRefinement` setzen.
 Dann beende den Prozess.
 
 ---
@@ -45,11 +46,6 @@ Zeige dem Nutzer eine Zusammenfassung:
 - Titel
 - User Story (aus dem Issue-Body)
 - Akzeptanzkriterien (aus dem Issue-Body)
-
-Setze das Label der Story auf `ForRefinement`:
-```bash
-gh issue edit <nummer> --remove-label "New" --add-label "ForRefinement"
-```
 
 ---
 
